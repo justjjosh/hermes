@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { getBrands, deleteBrand } from '../utils/api';
 import { useToast } from '../components/Toast';
 import StatusBadge from '../components/StatusBadge';
@@ -15,10 +15,11 @@ export default function BrandList() {
     const [deleteTarget, setDeleteTarget] = useState(null);
     const addToast = useToast();
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         loadBrands();
-    }, [statusFilter, categoryFilter]);
+    }, [statusFilter, categoryFilter, location.key]);
 
     async function loadBrands() {
         setLoading(true);
@@ -131,7 +132,7 @@ export default function BrandList() {
                             </div>
                             <div className="brand-card-actions" onClick={e => e.stopPropagation()}>
                                 <Link to={`/pitches/generate/${brand.id}`} className="btn btn-primary btn-sm">
-                                    ✨ Generate Pitch
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg> Generate Pitch
                                 </Link>
                                 <button className="btn btn-danger btn-sm" onClick={() => setDeleteTarget(brand)}>
                                     Delete

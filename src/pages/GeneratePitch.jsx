@@ -113,14 +113,16 @@ export default function GeneratePitch() {
                                 Generating with AI... (this may take a few seconds)
                             </span>
                         ) : (
-                            <>✨ Generate AI Pitch</>
+                            <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg> Generate AI Pitch</>
                         )}
                     </button>
                 </div>
 
                 {generating && (
                     <div className="card" style={{ textAlign: 'center', padding: 'var(--sp-8)' }}>
-                        <div style={{ fontSize: 48, marginBottom: 'var(--sp-4)' }}>🤖</div>
+                        <div style={{ marginBottom: 'var(--sp-4)' }}>
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                        </div>
                         <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 700, marginBottom: 'var(--sp-2)' }}>
                             AI is crafting your pitch...
                         </h3>

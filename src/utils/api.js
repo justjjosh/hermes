@@ -28,10 +28,10 @@ export const getBrands = (params = {}) => {
         if (v !== undefined && v !== null && v !== '') query.append(k, v);
     });
     const qs = query.toString();
-    return request('GET', `/brands${qs ? `?${qs}` : ''}`);
+    return request('GET', `/brands/${qs ? `?${qs}` : ''}`);
 };
 export const getBrand = (id) => request('GET', `/brands/${id}`);
-export const createBrand = (data) => request('POST', '/brands', data);
+export const createBrand = (data) => request('POST', '/brands/', data);
 export const updateBrand = (id, data) => request('PUT', `/brands/${id}`, data);
 export const deleteBrand = (id) => request('DELETE', `/brands/${id}`);
 
@@ -42,10 +42,16 @@ export const getPitches = (params = {}) => {
         if (v !== undefined && v !== null && v !== '') query.append(k, v);
     });
     const qs = query.toString();
-    return request('GET', `/pitches${qs ? `?${qs}` : ''}`);
+    return request('GET', `/pitches/${qs ? `?${qs}` : ''}`);
 };
 export const getPitch = (id) => request('GET', `/pitches/${id}`);
 export const generatePitch = (brandId) => request('POST', '/pitches/generate', { brand_id: brandId });
 export const updatePitch = (id, data) => request('PUT', `/pitches/${id}`, data);
 export const sendPitch = (id) => request('POST', `/pitches/${id}/send`);
 export const deletePitch = (id) => request('DELETE', `/pitches/${id}`);
+
+// Brand Discovery
+export const discoverSearch = (brandName, forceRefresh = false) =>
+    request('POST', `/discover/search${forceRefresh ? '?force_refresh=true' : ''}`, { brand_name: brandName });
+export const discoverPitch = (data) => request('POST', '/discover/pitch', data);
+export const getDiscoverCache = () => request('GET', '/discover/cache');

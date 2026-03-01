@@ -19,6 +19,7 @@ export default function PitchHistory() {
     const [brands, setBrands] = useState([]);
     const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState('');
+    const [search, setSearch] = useState('');
     const [page, setPage] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -82,6 +83,14 @@ export default function PitchHistory() {
                 ))}
             </div>
 
+            {/* Search */}
+            <div className="filters-bar" style={{ marginBottom: 'var(--sp-4)' }}>
+                <div className="search-input">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                    <input type="text" placeholder="Search by brand name..." value={search} onChange={e => { setSearch(e.target.value); setPage(0); }} />
+                </div>
+            </div>
+
             {loading ? (
                 <LoadingSpinner message="Loading pitches..." />
             ) : pitches.length === 0 ? (
@@ -109,25 +118,28 @@ export default function PitchHistory() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pitches.map(pitch => (
-                                    <tr key={pitch.id} className="clickable">
-                                        <td>
-                                            <Link to={`/pitches/${pitch.id}`} style={{ color: 'var(--text)', fontWeight: 600, textDecoration: 'none' }}>
-                                                {getBrandName(pitch.brand_id)}
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Link to={`/pitches/${pitch.id}`} style={{ color: 'var(--text)', textDecoration: 'none' }}>
-                                                {pitch.subject?.slice(0, 50)}{pitch.subject?.length > 50 ? '...' : ''}
-                                            </Link>
-                                        </td>
-                                        <td><StatusBadge status={pitch.status} /></td>
-                                        <td style={{ textTransform: 'capitalize' }}>{pitch.mode}</td>
-                                        <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.sent_at)}</td>
-                                        <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.opened_at)}</td>
-                                        <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.replied_at)}</td>
-                                    </tr>
-                                ))}
+                                {pitches
+                                    .filter(p => !search || getBrandName(p.brand_id).toLowerCase().includes(search.toLowerCase()))
+                                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                                    .map(pitch => (
+                                        <tr key={pitch.id} className="clickable">
+                                            <td>
+                                                <Link to={`/pitches/${pitch.id}`} style={{ color: 'var(--text)', fontWeight: 600, textDecoration: 'none' }}>
+                                                    {getBrandName(pitch.brand_id)}
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link to={`/pitches/${pitch.id}`} style={{ color: 'var(--text)', textDecoration: 'none' }}>
+                                                    {pitch.subject?.slice(0, 50)}{pitch.subject?.length > 50 ? '...' : ''}
+                                                </Link>
+                                            </td>
+                                            <td><StatusBadge status={pitch.status} /></td>
+                                            <td style={{ textTransform: 'capitalize' }}>{pitch.mode}</td>
+                                            <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.sent_at)}</td>
+                                            <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.opened_at)}</td>
+                                            <td style={{ fontSize: 'var(--text-xs)', whiteSpace: 'nowrap' }}>{formatDate(pitch.replied_at)}</td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>
@@ -135,11 +147,11 @@ export default function PitchHistory() {
                     {/* Pagination */}
                     <div className="pagination">
                         <button className="pagination-btn" onClick={() => setPage(p => p - 1)} disabled={page === 0}>
-                            ← Previous
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg> Previous
                         </button>
                         <span className="pagination-info">Page {page + 1}</span>
                         <button className="pagination-btn" onClick={() => setPage(p => p + 1)} disabled={total < PAGE_SIZE}>
-                            Next →
+                            Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
                         </button>
                     </div>
                 </>

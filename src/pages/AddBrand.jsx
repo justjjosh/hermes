@@ -80,7 +80,7 @@ export default function AddBrand() {
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--sp-3)', marginTop: 'var(--sp-4)' }}>
                         <button type="button" className="btn btn-secondary" onClick={() => navigate('/brands')}>Cancel</button>
                         <button type="submit" className="btn btn-primary" disabled={saving}>
-                            {saving ? 'Adding...' : '✨ Add Brand'}
+                            {saving ? 'Adding...' : 'Add Brand'}
                         </button>
                     </div>
                 </div>

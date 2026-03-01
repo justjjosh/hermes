@@ -58,7 +58,7 @@ export default function PitchReview() {
         try {
             const updated = await sendPitch(id);
             setPitch(updated);
-            addToast('🚀 Pitch sent successfully!');
+            addToast('Pitch sent successfully!');
         } catch (err) {
             addToast(err.message, 'error');
         } finally {
@@ -133,23 +133,23 @@ export default function PitchReview() {
                             <>
                                 {editing ? (
                                     <>
-                                        <button className="btn btn-primary" onClick={handleSave}>💾 Save Changes</button>
+                                        <button className="btn btn-primary" onClick={handleSave}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" /><polyline points="17 21 17 13 7 13 7 21" /><polyline points="7 3 7 8 15 8" /></svg> Save Changes</button>
                                         <button className="btn btn-secondary" onClick={() => { setEditing(false); setEditSubject(pitch.subject); setEditBody(pitch.body); }}>Cancel</button>
                                     </>
                                 ) : (
                                     <>
                                         <button className="btn btn-primary btn-lg" onClick={() => setShowSendModal(true)} disabled={sending}>
-                                            {sending ? 'Sending...' : '🚀 Send Pitch'}
+                                            {sending ? 'Sending...' : <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg> Send Pitch</>}
                                         </button>
-                                        <button className="btn btn-secondary" onClick={() => setEditing(true)}>✏️ Edit</button>
+                                        <button className="btn btn-secondary" onClick={() => setEditing(true)}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg> Edit</button>
                                         <button className="btn btn-secondary" onClick={handleRegenerate} disabled={regenerating}>
-                                            {regenerating ? 'Generating...' : '🔄 Re-generate'}
+                                            {regenerating ? 'Generating...' : <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" /><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" /></svg> Re-generate</>}
                                         </button>
                                     </>
                                 )}
                             </>
                         )}
-                        <button className="btn btn-ghost" onClick={() => navigate('/pitches')}>← Back to History</button>
+                        <button className="btn btn-ghost" onClick={() => navigate('/pitches')}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg> Back to History</button>
                     </div>
                 </div>
 

@@ -14,6 +14,7 @@ const navItems = [
         items: [
             { path: '/brands', label: 'Brands', icon: BrandsIcon },
             { path: '/brands/new', label: 'Add Brand', icon: AddIcon },
+            { path: '/discover', label: 'Discover Brand', icon: DiscoverIcon },
             { path: '/pitches/generate', label: 'Generate Pitch', icon: SparkleIcon },
         ]
     },
@@ -128,6 +129,14 @@ function SparkleIcon() {
     return (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+        </svg>
+    );
+}
+
+function DiscoverIcon() {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
         </svg>
     );
 }

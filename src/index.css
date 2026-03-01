@@ -2,7 +2,9 @@
 /* Forest Green & Olive — Peaceful, Premium */
 
 /* ---------- CSS Reset ---------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -118,9 +120,9 @@
   --radius-xl: 20px;
 
   /* --- Shadows --- */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
   --shadow-focus: 0 0 0 3px rgba(74, 124, 40, 0.2);
 
   /* --- Transitions --- */
@@ -152,6 +154,7 @@ a {
   text-decoration: none;
   transition: color var(--transition);
 }
+
 a:hover {
   color: var(--primary-hover);
 }
@@ -178,7 +181,7 @@ a:hover {
 
 .sidebar-brand {
   padding: var(--sp-6) var(--sp-6) var(--sp-4);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sidebar-brand h1 {
@@ -249,7 +252,7 @@ a:hover {
 .nav-link.active {
   background: var(--green-700);
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link svg {
@@ -431,30 +434,38 @@ a:hover {
   flex-shrink: 0;
 }
 
-.badge-draft, .badge-not_contacted {
+.badge-draft,
+.badge-not_contacted {
   background: var(--status-draft-bg);
   color: var(--status-draft);
 }
-.badge-sent, .badge-pitched {
+
+.badge-sent,
+.badge-pitched {
   background: var(--status-sent-bg);
   color: var(--status-sent);
 }
+
 .badge-opened {
   background: var(--status-opened-bg);
   color: var(--status-opened);
 }
+
 .badge-clicked {
   background: var(--status-clicked-bg);
   color: var(--status-clicked);
 }
+
 .badge-replied {
   background: var(--status-replied-bg);
   color: var(--status-replied);
 }
+
 .badge-partnership {
   background: var(--status-partnership-bg);
   color: var(--status-partnership);
 }
+
 .badge-rejected {
   background: var(--status-rejected-bg);
   color: var(--status-rejected);
@@ -1441,22 +1452,43 @@ tbody tr.clickable {
 
 /* ---------- Animations ---------- */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideRight {
-  from { opacity: 0; transform: translateX(24px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .page-enter {
@@ -1468,6 +1500,7 @@ tbody tr.clickable {
   .detail-layout {
     grid-template-columns: 1fr;
   }
+
   .info-sidebar {
     position: static;
   }
@@ -1563,5 +1596,169 @@ tbody tr.clickable {
 @media (max-width: 480px) {
   .stat-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Brand Discovery ---------- */
+.discover-contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.discover-contact-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--bg-card);
+}
+
+.discover-contact-card:hover {
+  border-color: var(--green-300);
+  background: var(--warm-gray-50);
+}
+
+.discover-contact-card.selected {
+  border-color: var(--green-400);
+  background: var(--green-50);
+}
+
+.discover-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.discover-contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.discover-contact-email {
+  font-weight: 600;
+  font-size: var(--text-base);
+  margin-bottom: var(--sp-2);
+  word-break: break-all;
+}
+
+.discover-contact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.discover-source {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  cursor: help;
+}
+
+/* Confidence badges */
+.confidence-high {
+  background: var(--status-replied-bg);
+  color: var(--status-replied);
+}
+
+.confidence-high::before {
+  background: var(--status-replied);
+}
+
+.confidence-medium {
+  background: var(--status-opened-bg);
+  color: var(--status-opened);
+}
+
+.confidence-medium::before {
+  background: var(--status-opened);
+}
+
+.confidence-low {
+  background: var(--status-rejected-bg);
+  color: var(--status-rejected);
+}
+
+.confidence-low::before {
+  background: var(--status-rejected);
+}
+
+/* Type badge */
+.badge-type {
+  background: var(--olive-100);
+  color: var(--olive-700);
+}
+
+.badge-type::before {
+  background: var(--olive-600);
+}
+
+/* Olive badge for categories */
+.badge-olive {
+  background: var(--olive-100);
+  color: var(--olive-700);
+}
+
+.badge-olive::before {
+  display: none;
+}
+
+/* Discovery results */
+.discover-results-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.discover-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.discover-result-item {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.discover-result-sent {
+  background: var(--status-sent-bg);
+  border-color: rgba(45, 138, 123, 0.2);
+}
+
+.discover-result-duplicate {
+  background: var(--status-draft-bg);
+  border-color: rgba(139, 149, 165, 0.2);
+}
+
+.discover-result-failed {
+  background: var(--status-rejected-bg);
+  border-color: rgba(192, 57, 43, 0.2);
+}
+
+.discover-result-email {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.discover-result-links {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+@media (max-width: 768px) {
+  .discover-contact-card {
+    padding: var(--sp-3);
   }
 }
