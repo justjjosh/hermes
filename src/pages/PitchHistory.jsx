@@ -30,7 +30,7 @@ export default function PitchHistory() {
     async function loadData() {
         setLoading(true);
         try {
-            const params = { skip: page * PAGE_SIZE, limit: PAGE_SIZE };
+            const params = { skip: page * PAGE_SIZE, limit: PAGE_SIZE, sort: 'desc' };
             if (statusFilter) params.status = statusFilter;
             const [p, b] = await Promise.all([getPitches(params), getBrands()]);
             setPitches(p);
